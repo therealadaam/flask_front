@@ -1,0 +1,22 @@
+{% extends 'base.html' %} {% block content %}
+<h1 class="title">{% block title %} MS User Status {% endblock %}</h1>
+
+{% if users is defined %}
+<div class="content">
+	{% for user in users %}
+	<div class="student">
+		<p>User Name:{{ user.displayname }}</p>
+		<p>Licenses:{{ user.sku_names }}</p>
+		<p>Tenant:{{ user.tenant_name }}</p>
+		<p>Email Address:{{ user.email }}</p>
+	</div>
+	{% endfor %}
+</div>
+{% else %}
+<div class="content">
+	<p>DB To be initiated?</p>
+	<form action="{{ url_for('ms_lic.init_ms_db') }}" method="get">
+		<button>Init the DB</button>
+	</form>
+</div>
+{% endif %} {% endblock %}

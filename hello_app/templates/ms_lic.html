@@ -1,0 +1,24 @@
+{% extends 'base.html' %} {% block content %}
+<h1 class="title">{% block title %} MS License Status {% endblock %}</h1>
+
+{% if skus is defined %}
+<div class="content">
+	{% for sku in skus %}
+	<div class="student">
+		<p>Tenant Name:{{ sku.tenant_name }}</p>
+		<p>License Name:{{ sku.sku_name }}</p>
+		<p>Licenses In Use:{{ sku.consumed }}</p>
+		<p>Licenses Over Subscribed:{{ sku.warning }}</p>
+		<p>Licenses Available:{{ sku.enabled }}</p>
+		<p>Licenses Suspended:{{ sku.suspended }}</p>
+	</div>
+	{% endfor %}
+</div>
+{% else %}
+<div class="content">
+	<p>DB To be initiated?</p>
+	<form action="{{ url_for('ms_lic.init_ms_db') }}" method="get">
+		<button>Init the DB</button>
+	</form>
+</div>
+{% endif %} {% endblock %}
