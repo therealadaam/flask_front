@@ -43,34 +43,3 @@ def init_ms_db():
         return render_template(f'ms_lic.html', skus=skus)
     except TemplateNotFound:
         abort(404)
-
-# @bp_ms_lic.route('/<int:student_id>')
-# def get_student(student_id):
-#     student = Student.query.get_or_404(student_id)
-#     return render_template('forms/student.html', student=student)
-
-# @bp_ms_lic.route('/<int:student_id>/edit/', methods=['GET','POST'])
-# def set_student(student_id):
-#     if request.method == 'GET':
-#         student = Student.query.get_or_404(student_id)
-#         form = StudentForm(obj=student)
-
-#     elif request.method == 'POST':
-#         current_student = Student.query.get_or_404(student_id)
-#         current_student.firstname=request.form["firstname"]
-#         current_student.lastname=request.form["lastname"]
-#         current_student.email=request.form["email"]
-#         current_student.age=request.form["age"]
-#         current_student.bio=request.form["bio"]
-
-#         if request.form["active"] == 'on':
-#             current_student.active=True
-#         else:
-#             current_student.active=False
-
-#         form = Form(formdata=request.form)
-#         if form.validate():
-#             db.session.commit()
-#             return redirect(url_for(endpoint='.get_student',student_id=student_id))
-
-#     return render_template('forms/edit.html', student=form)
